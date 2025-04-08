@@ -1,0 +1,9 @@
+subprojects {
+    group = 'com.gani'
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.register('prepareKotlinBuildScriptModel')
+}
