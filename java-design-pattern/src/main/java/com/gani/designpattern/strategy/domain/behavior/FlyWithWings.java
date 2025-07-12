@@ -7,4 +7,9 @@ public class FlyWithWings implements FlyBehavior {
         System.out.println("날아올라");
     }
 
+    @Override
+    public String toString() {
+        return "FlyWithWings(보편적인 날기)";
+    }
+
 }
