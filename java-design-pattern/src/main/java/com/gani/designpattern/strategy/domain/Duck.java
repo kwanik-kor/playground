@@ -17,4 +17,9 @@ public abstract class Duck {
      */
     abstract void display();
 
+    /**
+     * 오리는 날 수 있다!
+     */
+    abstract void fly();
+
 }

@@ -4,7 +4,7 @@ public class MallardDuck extends Duck {
 
     @Override
     void quack() {
-
+        System.out.println("꽥꽥");
     }
 
     @Override
@@ -14,6 +14,11 @@ public class MallardDuck extends Duck {
 
     @Override
     void display() {
+
+    }
+
+    @Override
+    void fly() {
 
     }
 }

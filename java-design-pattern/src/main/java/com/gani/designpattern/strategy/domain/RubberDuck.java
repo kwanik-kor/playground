@@ -1,10 +1,10 @@
 package com.gani.designpattern.strategy.domain;
 
-public class RedheadDuck extends Duck {
+public class RubberDuck extends Duck{
 
     @Override
     void quack() {
-        System.out.println("꽥꽥");
+        System.out.println("삑삑");
     }
 
     @Override
@@ -19,7 +19,7 @@ public class RedheadDuck extends Duck {
 
     @Override
     void fly() {
-
+        // Do nothing
     }
 
 }
