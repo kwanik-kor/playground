@@ -6,6 +6,9 @@ package com.gani.kotlinexcercise.essentials
  * 코틀린은 어떻게 클래스 없이 가능했던 거지?<br>
  * 는 ByteCode를 살펴보면 MainKt 형태의 클래스를 만들기 때문!
  */
+/**
+ * Program entry point that prints a greeting message to the console.
+ */
 fun main() {
     println("Hello Kotlin!!")
 }
