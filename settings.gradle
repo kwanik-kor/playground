@@ -6,3 +6,4 @@ rootProject.name = 'playground'
 
 include ':spring-boot-3'
 include ':java-design-pattern'
+include ':kotlin-exercise'
