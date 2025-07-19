@@ -3,6 +3,16 @@ package com.gani.kotlinexcercise.essentials.functions
 import org.junit.Test
 import kotlin.test.assertEquals
 
+/**
+ * Formats a person's name, surname, and age into a single display string.
+ *
+ * Constructs the string by appending the non-null parameters in order: name, surname (preceded by a space), and age (enclosed in parentheses and preceded by a space). The result is trimmed of leading and trailing whitespace.
+ *
+ * @param name The person's first name, or null to omit.
+ * @param surname The person's surname, or null to omit.
+ * @param age The person's age, or null to omit.
+ * @return The formatted display string containing the provided information.
+ */
 fun formatPersonDisplay(
     name: String? = null,
     surname: String? = null,
@@ -17,6 +27,11 @@ fun formatPersonDisplay(
     return result.trim()
 }
 
+/**
+ * Demonstrates the usage of the `formatPersonDisplay` function with various combinations of name, surname, and age.
+ *
+ * Prints formatted person display strings to standard output.
+ */
 fun main() {
     println(formatPersonDisplay("John", "Smith", 42))
     // John Smith (42)

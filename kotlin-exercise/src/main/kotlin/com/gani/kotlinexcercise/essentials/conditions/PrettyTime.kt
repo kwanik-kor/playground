@@ -3,6 +3,14 @@ package com.gani.kotlinexcercise.essentials.conditions
 import org.junit.Test
 import kotlin.test.assertEquals
 
+/**
+ * Converts a non-negative number of seconds into a human-readable string in hours, minutes, and seconds.
+ *
+ * Returns "Now" for zero seconds, and "Invalid input" for negative values.
+ *
+ * @param seconds The total number of seconds to convert.
+ * @return A formatted string representing the equivalent time in hours, minutes, and seconds.
+ */
 fun secondsToPrettyTime(seconds: Int): String {
     val minute = 60
     val hour = minute * minute
@@ -18,6 +26,9 @@ fun secondsToPrettyTime(seconds: Int): String {
     }.trim()
 }
 
+/**
+ * Demonstrates the usage of `secondsToPrettyTime` by printing formatted time strings for various input values.
+ */
 fun main() {
     println(secondsToPrettyTime(-1)) // Invalid input
     println(secondsToPrettyTime(0)) // Now
