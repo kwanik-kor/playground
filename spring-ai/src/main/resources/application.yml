@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: spring-ai
+  output:
+    ansi:
+      enabled: always
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 15MB
+  web:
+    resources:
+      cache:
+        cache-control:
+          no-cache: true
+          no-store: true
+          must-revalidate: true
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+
+server:
+  port: 8080
+
+logging:
+  pattern:
+    console: "%clr(%-5level){green} %clr(%logger.%M\\(\\)){cyan}: %msg%n"
