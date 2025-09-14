@@ -1,6 +1,7 @@
 package com.gani.springai.presentation;
 
 import com.gani.springai.service.ChatModelByClient;
+import com.gani.springai.service.PromptTemplateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import reactor.core.publisher.Flux;
 public class AiController {
 //    private final ChatModelService chatModelService;
     private final ChatModelByClient chatModelService;
+    private final PromptTemplateService promptTemplateService;
 
     @PostMapping(
             value = "/chat-model",
@@ -33,6 +35,16 @@ public class AiController {
     )
     public Flux<String> chatStream(@RequestParam("question") String question) {
         return chatModelService.generateStreamText(question);
+    }
+
+    @PostMapping(
+            value = "/prompt-template",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces = MediaType.APPLICATION_NDJSON_VALUE
+    )
+    public Flux<String> promptTemplate(@RequestParam("statement") String statement,
+                                       @RequestParam("language") String language) {
+        return promptTemplateService.promptTemplate(statement, language);
     }
 
 }
