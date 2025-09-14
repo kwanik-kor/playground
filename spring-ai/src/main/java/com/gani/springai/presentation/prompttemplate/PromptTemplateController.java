@@ -1,4 +1,4 @@
-package com.gani.springai.presentation;
+package com.gani.springai.presentation.prompttemplate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

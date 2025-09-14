@@ -23,7 +23,7 @@
         springai.setSpinner("spinner", true);
 
         // AJAX 요청하고 응답받기
-        const response = await fetch('/ai/multi-messages', {
+        const response = await fetch('/ai/prompt-template/multi-messages', {
           method: "post",
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',

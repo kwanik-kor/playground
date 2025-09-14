@@ -1,14 +1,23 @@
 package com.gani.springai.service;
 
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.SystemMessage;
+import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class PromptTemplateService {
     private final ChatClient chatClient;
 
@@ -36,6 +45,46 @@ public class PromptTemplateService {
                 .user(userTemplate.render(Map.of("statement", statement, "language", language)))
                 .stream()
                 .content();
+    }
+
+    /**
+     * 여러 개의 UserMessage와 AssistantMessage도 함께 전송할 수 있음 <br>
+     * 본격 Agent를 개발한다면, 기존 대화를 어떤 식으로 저장하고 이를 효율적으로 불러와 컨텍스트를 유지할 것인가가 중요하겠네.
+     * - Document DB를 사용하는 것도 좋아보이고, 응답 효율을 위해 적절한 TTL을 건 캐싱을 적용해도 좋겠다.
+     * @param question user message
+     * @param chatMemory message history
+     * @return llm response
+     */
+    public String multiMessage(@NonNull String question, @NonNull List<Message> chatMemory) {
+        if (chatMemory.isEmpty()) {
+            chatMemory.add(MultiMessageChatOptions.SYSTEM_MESSAGE);
+        }
+
+        log.info("Message histories: {}", chatMemory.toString());
+
+        ChatResponse response = chatClient.prompt()
+                .messages(chatMemory)
+                .user(question)
+                .call()
+                .chatResponse();
+
+        UserMessage userMessage = UserMessage.builder().text(question).build();
+        chatMemory.add(userMessage);
+
+        // Memoization(AI도 DP다..)
+        AssistantMessage assistantMessage = response.getResult().getOutput();
+        chatMemory.add(assistantMessage);
+
+        return assistantMessage.getText();
+    }
+
+    private static class MultiMessageChatOptions {
+        static final SystemMessage SYSTEM_MESSAGE = SystemMessage.builder()
+                .text("""
+                당신은 AI 비서입니다.
+                제공되는 지난 대화 내용을 보고 우선적으로 답변해 주세요.
+                """)
+                .build();
     }
 
 
