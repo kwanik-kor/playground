@@ -12,7 +12,6 @@ import java.util.function.Consumer;
 @Slf4j
 @Getter
 public class Elevator implements Runnable {
-
     private static final int MIN_FLOOR = 1;
     private static final int MAX_FLOOR = 15;
     private static final int MOVE_DELAY = 1000; // 1초 - 한 층 이동 시간

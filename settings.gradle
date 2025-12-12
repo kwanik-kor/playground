@@ -4,8 +4,14 @@ plugins {
 
 rootProject.name = 'playground'
 
+// Basic learning
 include ':spring-boot-3'
 include ':spring-ai'
-include ':java-design-pattern'
 include ':kotlin-exercise'
+
+// Literally Playground
 include ':elevator-simulator'
+
+// Books
+include ':java-design-pattern'
+include ':effective-software'
